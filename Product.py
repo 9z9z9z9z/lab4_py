@@ -27,13 +27,19 @@ class Product:
     @property
     def volume(self): return self.__volume
 
+    @property
+    def name(self): return self.__name
+
+    @name.setter
+    def name(self, name): self.__name = name
+
     @price.setter
     def price(self, price): self.__price = price
 
     @volume.setter
     def volume(self, volume): self.__volume = volume
 
-    def __add__(self, other): return Product(self.__name + "\n" + other.__name, self.__price + other.__price, self.__volume + other.__volume)
+    def __add__(self, other): return Product(self.__name + "\n\t\t" + other.__name, self.__price + other.__price, self.__volume + other.__volume)
 
     def __str__(self):
-        return "Name: \n" + self.__name + "\nPrice:\t" + str(self.__price) + "\nVolume:\t" + str(self.__volume)
+        return "Name:\t" + self.__name + "\nPrice:\t" + str(self.__price) + "\nVolume:\t" + str(self.__volume)
