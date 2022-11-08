@@ -2,7 +2,7 @@ from Product import Product
 
 
 class Food(Product):
-    def __init__(self, name, price, data, storage_data, weight, width=1, depth=1):
+    def __init__(self, name, price:int, data, storage_data:int, weight:int, width:int=1, depth:int=1):
         super(Food, self).__init__(name, price, weight, width, depth)
         self.__data = data
         self.__storage_data = storage_data

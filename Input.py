@@ -1,3 +1,8 @@
+from Product import Product
+from Equipment import Equipment
+from Food import Food
+
+
 def input_int() -> int:
     while True:
         try:
@@ -16,3 +21,4 @@ def input_float() -> float:
             print("Incorrect input")
         except ValueError:
             print("Incorrect input")
+

@@ -1,21 +1,27 @@
 class Product:
-    def __init__(self, name, price, weight, width=1, depth=1):
+    def __init__(self, name:str, price:int, weight:int, width:int=1, depth:int=1):
         self.__name = name
-        self.__price = price
-        self.__weight = weight
-        self.__width = width
-        self.__depth = depth
+        if price < 0.01:
+            self.price = 0.01
+        else:
+            self.__price = price
+
+        self.__weight = abs(weight)
+        self.__width = abs(width)
+        self.__depth = abs(depth)
         self.__volume = self.__depth * self.__weight * self.__width
 
-    def discount(self, percent) -> float:
+    def discount(self, percent:int) -> float:
         ans = round((self.price * (100 - percent) / 100), 2)
         if ans == 0:
+            self.__price = 0.01
             return 0.01
         else:
+            self.__price = ans
             return ans
 
-    def count(self, weight, width=1, depth=1) -> int:
-        box = [weight, width, depth]
+    def count(self, weight:int, width:int=1, depth:int=1) -> int:
+        box = [abs(weight), abs(width), abs(depth)]
         box.sort()
         case = [self.__weight, self.__width, self.__depth]
         case.sort()
@@ -41,11 +47,14 @@ class Product:
         self.__name = name
 
     @price.setter
-    def price(self, price):
-        self.__price = price
+    def price(self, price:int):
+        if price < 0.01:
+            self.__price = 0.01
+        else:
+            self.__price = price
 
     @volume.setter
-    def volume(self, volume):
+    def volume(self, volume:int):
         self.__volume = volume
 
     def __add__(self, other):
@@ -55,3 +64,4 @@ class Product:
     def __str__(self):
         return "\n====================================\nName:\t" + self.__name + "\nPrice:\t" + str(self.__price) + \
                "\nVolume:\t" + str(self.__volume) + "\n====================================\n"
+
